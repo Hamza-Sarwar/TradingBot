@@ -1,0 +1,24 @@
+<html>
+    <header>
+        <title>Trade Coin</title>
+    </header>
+    <body id="app">
+        <h1>
+            Data
+        </h1>
+        {{type}}
+
+
+
+        <script>
+            var socket = new WebSocket('ws://localhost:8000/ws/abc_urls/');
+            socket.onmessage = function(event){
+                var data =JSON.parse(event.data);
+                console.log(data);
+                document.querySelector('#app').innerText = data.message;
+            }
+
+
+        </script>
+    </body>
+</html>
