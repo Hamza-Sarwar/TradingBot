@@ -1,24 +1,66 @@
 <html>
     <header>
+        <style>
+            table {
+              font-family: arial, sans-serif;
+              border-collapse: collapse;
+              width: 100%;
+            }
+            
+            td, th {
+              border: 1px solid #dddddd;
+              text-align: left;
+              padding: 8px;
+            }
+            
+            tr:nth-child(even) {
+              background-color: #dddddd;
+            }
+            </style>
         <title>Trade Coin</title>
     </header>
     <body id="app">
-        <h1>
-            Data
-        </h1>
-        {{type}}
-
-
-
+        <h1>Coinbase BTC-USD</h1>
+        <table>
+            <tr>
+              <th>Price</th>
+              <th>Open_24h</th>
+              <th>Volume_24h</th>
+              <th>Low_24h</th>
+              <th>High_24h</th>
+            </tr>
+            <tr>
+              <td id="a"></td>
+              <td id="b"></td>
+              <td id="c"></td>
+              <td id="d"></td>
+              <td id="e"></td>
+            </tr>
+            <tr>
+                <td id="f"></td>
+                <td id="g"></td>
+                <td id="h"></td>
+                <td id="i"></td>
+                <td id="j"></td>
+              </tr>
+          </table>
         <script>
             var socket = new WebSocket('ws://localhost:8000/ws/abc_urls/');
             socket.onmessage = function(event){
                 var data =JSON.parse(event.data);
                 console.log(data);
-                document.querySelector('#app').innerText = data.message;
+                document.querySelector('#a').innerText = data.price;
+                document.querySelector('#b').innerText = data.open_24h;
+                document.querySelector('#c').innerText = data.volume_24h;
+                document.querySelector('#d').innerText = data.low_24h;
+                document.querySelector('#e').innerText = data.high_24h;
+
+                document.querySelector('#f').innerText = data.price;
+                document.querySelector('#g').innerText = data.open_24h;
+                document.querySelector('#h').innerText = data.volume_24h;
+                document.querySelector('#i').innerText = data.low_24h;
+                document.querySelector('#j').innerText = data.high_24h;
             }
-
-
         </script>
     </body>
 </html>
