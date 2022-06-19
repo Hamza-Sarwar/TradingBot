@@ -20,9 +20,10 @@
         <title>Trade Coin</title>
     </header>
     <body id="app">
-        <h1>Coinbase BTC-USD</h1>
+        <h1 style="text-align: center;">Coinbase Currencies</h1>
         <table>
             <tr>
+              <th>Currency Type</th>
               <th>Price</th>
               <th>Open_24h</th>
               <th>Volume_24h</th>
@@ -30,37 +31,102 @@
               <th>High_24h</th>
             </tr>
             <tr>
-              <td id="a"></td>
-              <td id="b"></td>
-              <td id="c"></td>
-              <td id="d"></td>
-              <td id="e"></td>
+              <td id="btc_type"></td>
+              <td id="btc_price"></td>
+              <td id="btc_open_24h"></td>
+              <td id="btc_volume_24h"></td>
+              <td id="btc_low_24h"></td>
+              <td id="btc_high_24h"></td>
             </tr>
             <tr>
-                <td id="f"></td>
-                <td id="g"></td>
-                <td id="h"></td>
-                <td id="i"></td>
-                <td id="j"></td>
+                <td id="eth_type"></td>
+                <td id="eth_price"></td>
+                <td id="eth_open_24h"></td>
+                <td id="eth_volume_24h"></td>
+                <td id="eth_low_24h"></td>
+                <td id="eth_high_24h"></td>
               </tr>
+              <tr>
+                <td id="ada_type"></td>
+                <td id="ada_price"></td>
+                <td id="ada_open_24h"></td>
+                <td id="ada_volume_24h"></td>
+                <td id="ada_low_24h"></td>
+                <td id="ada_high_24h"></td>
+              </tr>
+              <tr>
+                  <td id="sol_type"></td>
+                  <td id="sol_price"></td>
+                  <td id="sol_open_24h"></td>
+                  <td id="sol_volume_24h"></td>
+                  <td id="sol_low_24h"></td>
+                  <td id="sol_high_24h"></td>
+                </tr>
+                <tr>
+                  <td id="dot_type"></td>
+                  <td id="dot_price"></td>
+                  <td id="dot_open_24h"></td>
+                  <td id="dot_volume_24h"></td>
+                  <td id="dot_low_24h"></td>
+                  <td id="dot_high_24h"></td>
+                </tr>
           </table>
         <script>
             var socket = new WebSocket('ws://localhost:8000/ws/abc_urls/');
             socket.onmessage = function(event){
                 var data =JSON.parse(event.data);
-                console.log(data);
-                document.querySelector('#a').innerText = data.price;
-                document.querySelector('#b').innerText = data.open_24h;
-                document.querySelector('#c').innerText = data.volume_24h;
-                document.querySelector('#d').innerText = data.low_24h;
-                document.querySelector('#e').innerText = data.high_24h;
+                console.log(data.type);
+                if(data.type == "BTC-USD")
+                {
+                  document.querySelector('#btc_type').innerText = data.type;
+                  document.querySelector('#btc_price').innerText = data.price;
+                  document.querySelector('#btc_open_24h').innerText = data.open_24h;
+                  document.querySelector('#btc_volume_24h').innerText = data.volume_24h;
+                  document.querySelector('#btc_low_24h').innerText = data.low_24h;
+                  document.querySelector('#btc_high_24h').innerText = data.high_24h;
+                }
 
-                document.querySelector('#f').innerText = data.price;
-                document.querySelector('#g').innerText = data.open_24h;
-                document.querySelector('#h').innerText = data.volume_24h;
-                document.querySelector('#i').innerText = data.low_24h;
-                document.querySelector('#j').innerText = data.high_24h;
-            }
+                
+                if(data.type == "ETH-USD")
+                {
+                  document.querySelector('#eth_type').innerText = data.type;
+                  document.querySelector('#eth_price').innerText = data.price;
+                  document.querySelector('#eth_open_24h').innerText = data.open_24h;
+                  document.querySelector('#eth_volume_24h').innerText = data.volume_24h;
+                  document.querySelector('#eth_low_24h').innerText = data.low_24h;
+                  document.querySelector('#eth_high_24h').innerText = data.high_24h;
+                }
+                
+                if(data.type == "ADA-USD")
+                {
+                  document.querySelector('#ada_type').innerText = data.type;
+                  document.querySelector('#ada_price').innerText = data.price;
+                  document.querySelector('#ada_open_24h').innerText = data.open_24h;
+                  document.querySelector('#ada_volume_24h').innerText = data.volume_24h;
+                  document.querySelector('#ada_low_24h').innerText = data.low_24h;
+                  document.querySelector('#ada_high_24h').innerText = data.high_24h;
+                }
+                if(data.type == "SOL-USD")
+                {
+                  document.querySelector('#sol_type').innerText = data.type;
+                  document.querySelector('#sol_price').innerText = data.price;
+                  document.querySelector('#sol_open_24h').innerText = data.open_24h;
+                  document.querySelector('#sol_volume_24h').innerText = data.volume_24h;
+                  document.querySelector('#sol_low_24h').innerText = data.low_24h;
+                  document.querySelector('#sol_high_24h').innerText = data.high_24h;
+                }
+                if(data.type == "DOT-USD")
+                {
+                  document.querySelector('#dot_type').innerText = data.type;
+                  document.querySelector('#dot_price').innerText = data.price;
+                  document.querySelector('#dot_open_24h').innerText = data.open_24h;
+                  document.querySelector('#dot_volume_24h').innerText = data.volume_24h;
+                  document.querySelector('#dot_low_24h').innerText = data.low_24h;
+                  document.querySelector('#dot_high_24h').innerText = data.high_24h;
+
+                }
+
+              }
         </script>
     </body>
 </html>
